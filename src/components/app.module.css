@@ -1,0 +1,16 @@
+.formDiv {
+  padding: 20px;
+  margin: 30px;
+  width: 500px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #fcfbfa;
+}
+.title {
+  text-align: center;
+  font-weight: 600;
+}
+.titleContacts {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
