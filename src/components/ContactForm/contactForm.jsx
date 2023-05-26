@@ -69,7 +69,7 @@ export const ContactForm = () => {
       {({ errors, touched }) => (
         <Form className={style.form}>
           <div className={style.inputWrap}>
-            Name:asdfasdfsdf
+            Name:
             <Field className={style.input} type="text" name="name" />
             {errors.name && touched.name ? (
               <div className={style.errorDiv}>{errors.name}</div>
