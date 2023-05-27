@@ -41,6 +41,15 @@ export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   console.log(contacts);
   const handleSubmit = (values, actions) => {
+     const NotValidContact = contacts.find(
+      e => e.name.toLowerCase() === values.name.toLowerCase()
+    );
+
+    if (NotValidContact) {
+      Notify.failure(`${NotValidContact.name} is already in contacts`);
+      return;
+    }
+    
     const newContact = {
       id: nanoid(),
       name: values.name,
@@ -50,14 +59,7 @@ export const ContactForm = () => {
     dispatch(addContact(newContact));
     actions.resetForm();
 
-    const NotValidContact = contacts.find(
-      e => e.name.toLowerCase() === values.name.toLowerCase()
-    );
-
-    if (NotValidContact) {
-      Notify.failure(`${NotValidContact.name} is already in contacts`);
-      return;
-    }
+   
   };
 
   return (
