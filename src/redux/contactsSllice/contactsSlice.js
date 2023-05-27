@@ -13,6 +13,11 @@ const handleFulfilled = (state) => {
   state.isLoading = false;
   state.error = null;
 }
+
+const arrOperations = [fetchContacts, deleteContact, addContact];
+const func = (type) => arrOperations.map(el => el[type])
+
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
@@ -36,23 +41,17 @@ const contactsSlice = createSlice({
       })
 
       .addMatcher(isAnyOf(
-        fetchContacts.pending,
-        addContact.pending,
-        deleteContact.pending
+        ...func('pending')
       ), handlePending
       )
 
       .addMatcher(isAnyOf(
-        fetchContacts.rejected,
-        addContact.rejected,
-        deleteContact.rejected
+        ...func('rejected')
       ), handleRejected
       )
 
       .addMatcher(isAnyOf(
-        fetchContacts.fulfilled,
-        addContact.fulfilled,
-        deleteContact.fulfilled
+        ...func('fulfilled')
       ), handleFulfilled
       )
   },
