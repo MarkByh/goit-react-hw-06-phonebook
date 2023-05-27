@@ -37,7 +37,6 @@ const contactsSlice = createSlice({
         state.error = null;
       })
 
-
       .addMatcher(isAnyOf(
         fetchContacts.pending,
         addContact.pending,
