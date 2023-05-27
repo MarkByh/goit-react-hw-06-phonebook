@@ -19,44 +19,33 @@ const contactsSlice = createSlice({
   },
 
   extraReducers: (builder) => {
+    builder
 
-    builder.addCase(fetchContacts.pending, (state) => {
-      handlePending(state)
-    });
-    builder.addCase(addContact.pending, (state) => {
-      handlePending(state)
-    });
-    builder.addCase(deleteContact.pending, (state) => {
-      handlePending(state)
-    });
+      .addCase(fetchContacts.pending, handlePending)
+      .addCase(addContact.pending, handlePending)
+      .addCase(deleteContact.pending, handlePending)
 
 
-    builder.addCase(fetchContacts.rejected, (state, action) => {
-      handleRejected(state, action)
-    });
-    builder.addCase(deleteContact.rejected, (state, action) => {
-      handleRejected(state, action)
-    });
-    builder.addCase(addContact.rejected, (state, action) => {
-      handleRejected(state, action)
-    });
+      .addCase(fetchContacts.rejected, handleRejected)
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(addContact.rejected, handleRejected)
 
 
-    builder.addCase(fetchContacts.fulfilled, (state, { payload }) => {
-      state.items = [...payload];
-      state.isLoading = false;
-      state.error = null;
-    });
-    builder.addCase(deleteContact.fulfilled, (state, { payload }) => {
-      state.items = state.items.filter((contact) => contact.id !== payload.id);
-      state.isLoading = false;
-      state.error = null;
-    });
-    builder.addCase(addContact.fulfilled, (state, { payload }) => {
-      state.items.push(payload);
-      state.isLoading = false;
-      state.error = null;
-    });
+      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
+        state.items = [...payload];
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+        state.items = state.items.filter((contact) => contact.id !== payload.id);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        state.items.push(payload);
+        state.isLoading = false;
+        state.error = null;
+      })
   },
 });
 
@@ -65,3 +54,10 @@ export const contactsReducer = contactsSlice.reducer;
 export const { addNewContact, removeContact } = contactsSlice.actions;
 
 
+// builder.addMatcher(
+//   isAllOf(
+//     fetchContacts.pending,
+//     addContact.pending,
+//     deleteContact.pending
+//   ), handlePending
+// )
