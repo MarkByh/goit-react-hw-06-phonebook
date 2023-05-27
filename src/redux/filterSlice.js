@@ -1,3 +1,4 @@
+
 import { createSlice } from '@reduxjs/toolkit';
 
 export const filterSlice = createSlice({
@@ -8,7 +9,7 @@ export const filterSlice = createSlice({
 
   reducers: {
     setFilter(state, action) {
-      state.value = action.payload;
+      state.value = action.payload.toLowerCase();
     },
   },
 });

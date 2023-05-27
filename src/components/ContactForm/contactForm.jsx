@@ -3,7 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/contactsSllice/operations';
 import { selectContacts } from '../../redux/selectors';
 import style from './contactForm.module.css';
 
@@ -39,9 +39,9 @@ const Valid = Yup.object().shape({
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  console.log(contacts);
+
   const handleSubmit = (values, actions) => {
-     const NotValidContact = contacts.find(
+    const NotValidContact = contacts.find(
       e => e.name.toLowerCase() === values.name.toLowerCase()
     );
 
@@ -49,7 +49,7 @@ export const ContactForm = () => {
       Notify.failure(`${NotValidContact.name} is already in contacts`);
       return;
     }
-    
+
     const newContact = {
       id: nanoid(),
       name: values.name,
@@ -58,8 +58,6 @@ export const ContactForm = () => {
 
     dispatch(addContact(newContact));
     actions.resetForm();
-
-   
   };
 
   return (
