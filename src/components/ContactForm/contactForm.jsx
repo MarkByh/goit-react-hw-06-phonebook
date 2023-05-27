@@ -44,7 +44,6 @@ export const ContactForm = () => {
     const NotValidContact = contacts.find(
       e => e.name.toLowerCase() === values.name.toLowerCase()
     );
-
     if (NotValidContact) {
       Notify.failure(`${NotValidContact.name} is already in contacts`);
       return;
