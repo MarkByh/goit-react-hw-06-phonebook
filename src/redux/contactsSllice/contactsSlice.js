@@ -38,7 +38,7 @@ const contactsSlice = createSlice({
       handleRejected(state, action)
     });
     builder.addCase(addContact.rejected, (state, action) => {
-      state.error = action.payload;
+      handleRejected(state, action)
     });
 
 
