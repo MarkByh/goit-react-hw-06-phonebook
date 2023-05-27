@@ -20,7 +20,7 @@ export const ContactList = () => {
       {filteredContacts().map(({ id, name, number }) => (
         <li key={id} className={style.contactItem}>
           <p>
-            <span>{name}:</span> {number}
+            <span className={style.name}>{name}:</span> {number}
           </p>
           <button
             className={style.subButton}
