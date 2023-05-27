@@ -13,21 +13,24 @@ export const contactsSlice = createSlice({
     ],
   },
   reducers: {
-    addContact: {
-      reducer: (state, action) => {
-        state.items.push(action.payload);
-      },
-
-      prepare: ({ id, name, number }) => {
-        return {
-          payload: {
-            id,
-            name,
-            number,
-          },
-        };
-      },
+     addContact(state, action) {
+      state.items.push(action.payload);
     },
+//     addContact: {
+//       reducer: (state, action) => {
+//         state.items.push(action.payload);
+//       },
+
+//       prepare: ({ id, name, number }) => {
+//         return {
+//           payload: {
+//             id,
+//             name,
+//             number,
+//           },
+//         };
+//       },
+//     },
 
     deleteContact(state, action) {
       state.items = state.items.filter(
